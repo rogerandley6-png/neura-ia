@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090a12">
+  <title>Neura — sua IA criativa</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        <div><strong>neura</strong><small>INTELIGÊNCIA CRIATIVA</small></div>
+      </div>
+
+      <button class="new-chat" id="newChatBtn"><span>＋</span> Nova conversa</button>
+
+      <div class="nav-label">ESPAÇO DE TRABALHO</div>
+      <button class="nav-item active" data-mode="chat"><span class="nav-icon">✳</span> Conversar</button>
+      <button class="nav-item" data-mode="image"><span class="nav-icon">▧</span> Criar imagem</button>
+
+      <div class="sidebar-bottom">
+        <div class="status-card">
+          <span class="status-dot" id="statusDot"></span>
+          <div><strong id="statusTitle">Verificando conexão…</strong><small id="statusText">Motor de IA</small></div>
+        </div>
+        <div class="profile"><div class="avatar">N</div><div><strong>Neura</strong><small>Assistente pessoal</small></div><span class="profile-dots">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="topMode">Conversar</strong></div>
+        <div class="top-actions"><span class="model-chip"><i></i> NEURA AI</span></div>
+      </header>
+
+      <section class="workspace">
+        <div class="welcome" id="welcome">
+          <div class="eyebrow"><span class="sparkle">✦</span> SUA IA, SUAS IDEIAS</div>
+          <h1>O que vamos<br><em>criar hoje?</em></h1>
+          <p>Uma ideia na cabeça? Manda. A Neura conversa, explica, escreve e transforma descrições em imagens.</p>
+          <div class="mode-cards">
+            <button class="mode-card" data-mode="chat"><span class="card-icon chat-icon">✳</span><strong>Conversar</strong><small>Pergunte, aprenda e crie junto.</small><span class="card-arrow">↗</span></button>
+            <button class="mode-card" data-mode="image"><span class="card-icon image-icon">▧</span><strong>Gerar imagens</strong><small>Descreva uma cena. Veja nascer.</small><span class="card-arrow">↗</span></button>
+          </div>
+          <div class="prompt-suggestions">
+            <span>EXPERIMENTE</span>
+            <button data-prompt="Me explique como funciona a inteligência artificial de um jeito simples.">Explique IA de um jeito fácil</button>
+            <button data-prompt="Crie um plano de estudos de 7 dias para aprender algo novo.">Monte um plano de estudos</button>
+            <button data-prompt="Me dê 5 ideias criativas para um projeto.">Me dê ideias criativas</button>
+          </div>
+        </div>
+
+        <div class="chat-area hidden" id="chatArea">
+          <div class="messages" id="messages" aria-live="polite"></div>
+          <div class="composer-wrap">
+            <form class="composer" id="chatForm">
+              <textarea id="chatInput" rows="1" placeholder="Pergunte qualquer coisa para a Neura…" maxlength="12000"></textarea>
+              <div class="composer-footer"><span class="composer-hint">Enter para enviar · Shift + Enter para pular linha</span><button class="send-btn" type="submit" aria-label="Enviar mensagem">↑</button></div>
+            </form>
+            <p class="disclaimer">A Neura pode cometer erros. Confira informações importantes.</p>
+          </div>
+        </div>
+
+        <div class="image-area hidden" id="imageArea">
+          <div class="image-heading"><div class="eyebrow"><span class="sparkle">✦</span> LABORATÓRIO VISUAL</div><h2>Imagine. <em>Descreva.</em></h2><p>Transforme suas palavras em uma imagem original.</p></div>
+          <form class="image-form" id="imageForm">
+            <label for="imagePrompt">DESCREVA A IMAGEM</label>
+            <textarea id="imagePrompt" rows="3" maxlength="4000" placeholder="Ex.: Uma cidade futurista no alto das nuvens ao pôr do sol, estilo fotografia cinematográfica…"></textarea>
+            <div class="image-controls">
+              <div class="control-group"><label for="imageSize">FORMATO</label><select id="imageSize"><option value="1024x1024">Quadrado</option><option value="1536x1024">Paisagem</option><option value="1024x1536">Retrato</option></select></div>
+              <div class="control-group"><label for="imageQuality">QUALIDADE</label><select id="imageQuality"><option value="medium">Padrão</option><option value="high">Alta</option><option value="low">Rápida</option></select></div>
+              <button class="generate-btn" type="submit"><span>✦</span> Gerar imagem <b>↗</b></button>
+            </div>
+          </form>
+          <div class="image-result" id="imageResult">
+            <div class="empty-art"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-center">✦</div><div class="art-caption">SUA PRÓXIMA IDEIA COMEÇA AQUI</div></div>
+          </div>
+          <p class="disclaimer image-disclaimer">A geração de imagens usa a API e pode gerar custos na sua conta de desenvolvedor.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
